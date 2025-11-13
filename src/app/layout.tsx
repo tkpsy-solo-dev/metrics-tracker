@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { ClientInit } from '../components/ClientInit';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
+        <ClientInit />
         <div className="min-h-screen bg-gray-50">
           <header className="bg-white shadow-sm">
             <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
