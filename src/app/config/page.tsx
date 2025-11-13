@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { getAllMetrics, addMetric, updateMetric, deleteMetric } from '@/lib/metrics';
 import { Metric, MetricType } from '@/types/metric';
 import { exportToJSON, exportToCSV, downloadFile } from '@/lib/export';
+import { importFromJSON, importFromCSV, readFileAsText } from '@/lib/import';
 
 const metricSchema = z.object({
   name: z.string().min(1, 'メトリクス名を入力してください'),
@@ -26,6 +27,8 @@ export default function ConfigPage() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [isExporting, setIsExporting] = useState(false);
+  const [isImporting, setIsImporting] = useState(false);
+  const [importMessage, setImportMessage] = useState<string>('');
 
   const {
     register,
@@ -161,6 +164,45 @@ export default function ConfigPage() {
       alert('CSV エクスポート中にエラーが発生しました');
     } finally {
       setIsExporting(false);
+    }
+  };
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsImporting(true);
+    setImportMessage('');
+
+    try {
+      const content = await readFileAsText(file);
+
+      if (file.name.endsWith('.json')) {
+        await importFromJSON(content);
+        setImportMessage('✅ JSON インポート完了');
+      } else if (file.name.endsWith('.csv')) {
+        await importFromCSV(content);
+        setImportMessage('✅ CSV インポート完了');
+      } else {
+        setImportMessage('❌ サポートされていないファイル形式です (.json または .csv のみ)');
+      }
+
+      // 成功時は3秒後にメッセージをクリア
+      if (importMessage.startsWith('✅')) {
+        setTimeout(() => setImportMessage(''), 3000);
+      }
+
+      // データ再読み込み
+      await loadMetrics();
+
+      // ファイル入力をリセット
+      e.target.value = '';
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : '不明なエラー';
+      setImportMessage(`❌ インポートエラー: ${errorMessage}`);
+      console.error('インポートエラー:', error);
+    } finally {
+      setIsImporting(false);
     }
   };
 
@@ -339,6 +381,31 @@ export default function ConfigPage() {
           >
             {isExporting ? 'エクスポート中...' : 'CSV でエクスポート'}
           </button>
+        </div>
+      </div>
+
+      {/* データインポートセクション */}
+      <div className="mb-8 bg-white p-6 rounded-lg shadow">
+        <h2 className="text-xl font-semibold mb-4 text-gray-800">データインポート</h2>
+        <p className="text-gray-600 mb-4">
+          JSON または CSV 形式のファイルからメトリクスデータをインポートできます。
+        </p>
+        <div>
+          <input
+            type="file"
+            accept=".json,.csv"
+            onChange={handleFileUpload}
+            disabled={isImporting}
+            className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 disabled:opacity-50 disabled:cursor-not-allowed"
+          />
+          {importMessage && (
+            <p className={`mt-2 text-sm ${importMessage.startsWith('✅') ? 'text-green-600' : 'text-red-600'}`}>
+              {importMessage}
+            </p>
+          )}
+          {isImporting && (
+            <p className="mt-2 text-sm text-gray-600">インポート中...</p>
+          )}
         </div>
       </div>
 
