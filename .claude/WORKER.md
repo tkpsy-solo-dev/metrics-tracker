@@ -1,13 +1,13 @@
 # Worker Configuration
 
-You are **worker-3**.
+You are **worker-6**.
 
 ## Assignment
 
-- **Issue**: #1 - Phase 1: 基本セットアップと型定義
+- **Issue**: #7 - Phase 3: データ入力 UI
 - **Repository**: tkpsy-solo-dev/metrics-tracker
-- **GitHub URL**: https://github.com/tkpsy-solo-dev/metrics-tracker/issues/1
-- **Project**: metrics-tracker（新規プロジェクト）
+- **GitHub URL**: https://github.com/tkpsy-solo-dev/metrics-tracker/issues/7
+- **Project**: metrics-tracker（メトリクス追跡ツール）
 
 ## ⚠️ Branch Strategy (Critical)
 
@@ -23,22 +23,21 @@ You are **worker-3**.
 
 ## Your Mission
 
-1. **Issue #1 を読む**
-   - Phase 1: 基本セットアップと型定義
+1. **Issue #7 を読む**
+   - Phase 3: データ入力 UI
    - 詳細な実装計画が書かれています
    - 手順に従って進めてください
 
 2. **実装する**
-   - Next.js プロジェクトを作成（`pnpx create-next-app`）
-   - 必要なライブラリをインストール
-   - ディレクトリ構成を作成
-   - TypeScript 型定義を作成
-   - IndexedDB セットアップ
-   - 基本レイアウト・スタブページを作成
-   - README.md を作成
+   - React Hook Form + Zod でフォーム実装
+   - 動的スキーマ生成（アクティブなメトリクスから）
+   - 日付選択で既存データを自動ロード
+   - バリデーション・エラーハンドリング
+   - レスポンシブ UI（Tailwind CSS）
+   - ナビゲーションリンク
 
 3. **完了時の手続き**
-   - ブランチを push: `git push origin issue-1-phase-1-`
+   - ブランチを push: `git push origin issue-7-phase-3-`
    - **PR を作成（dev へ）**: `gh pr create --base dev --title "..." --body "..."`
      * 絶対に main へ PR を作成しないこと
      * 必ず base を `dev` に指定
@@ -50,7 +49,7 @@ You are **worker-3**.
 
 ## Important Notes
 
-- **新規プロジェクト**: このワークツリー内で `create-next-app` を実行してください
+- **既存コード**: Phase 1 と Phase 2 が完了しています
 - **pnpm 使用**: package manager は pnpm を使用してください
 - **TypeScript**: 型定義を厳密に行ってください
 - **コミット**: 意味のある単位で分割してください
