@@ -124,3 +124,11 @@ export async function getRecentDataPoints(
 
   return await getDataPointsByMetric(metricId, startDate, endDate);
 }
+
+/**
+ * すべてのデータポイントを削除（テスト用）
+ */
+export async function clearAllDataPoints(): Promise<void> {
+  await db.dataPoints.clear();
+  console.log('すべてのデータポイントを削除しました');
+}

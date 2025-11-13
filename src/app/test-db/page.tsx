@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import { getAllMetrics, addMetric } from '../../lib/metrics';
-import { addDataPoint, getDataPointsByMetric } from '../../lib/data';
+import { addDataPoint, getDataPointsByMetric, clearAllDataPoints } from '../../lib/data';
 import { getToday } from '../../lib/utils';
 import { Metric } from '../../types/metric';
 import { DataPoint } from '../../types/data';
+import { seedInitialData } from '../../lib/seed-data';
 
 export default function TestDBPage() {
   const [metrics, setMetrics] = useState<Metric[]>([]);
@@ -56,6 +57,26 @@ export default function TestDBPage() {
     }
   }
 
+  async function handleSeedData() {
+    try {
+      await seedInitialData();
+      setStatus('初期データを投入しました（2024-11-12）');
+      await loadMetrics();
+    } catch (error) {
+      setStatus(`エラー: ${error}`);
+    }
+  }
+
+  async function handleClearData() {
+    try {
+      await clearAllDataPoints();
+      setStatus('すべてのデータポイントを削除しました');
+      setDataPoints([]);
+    } catch (error) {
+      setStatus(`エラー: ${error}`);
+    }
+  }
+
   return (
     <div className="space-y-6">
       <div>
@@ -65,6 +86,24 @@ export default function TestDBPage() {
         <p className="text-sm text-gray-600 mb-4">
           Status: {status}
         </p>
+      </div>
+
+      <div className="bg-white p-4 rounded-lg shadow">
+        <h3 className="text-lg font-semibold mb-2">データ操作</h3>
+        <div className="flex gap-2">
+          <button
+            onClick={handleSeedData}
+            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+          >
+            初期データを投入（2024-11-12）
+          </button>
+          <button
+            onClick={handleClearData}
+            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+          >
+            全データをクリア
+          </button>
+        </div>
       </div>
 
       <div className="bg-white p-4 rounded-lg shadow">

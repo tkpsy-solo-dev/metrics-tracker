@@ -32,5 +32,71 @@
     "max": 12,
     "order": 3,
     "active": true
+  },
+  {
+    "id": "x-follow",
+    "name": "X フォロー数",
+    "description": "X（Twitter）でフォローしている人数",
+    "unit": "人",
+    "type": "count",
+    "color": "#1DA1F2",
+    "min": 0,
+    "order": 4,
+    "active": true
+  },
+  {
+    "id": "x-follower",
+    "name": "X フォロワー数",
+    "description": "X（Twitter）のフォロワー人数",
+    "unit": "人",
+    "type": "count",
+    "color": "#14171A",
+    "min": 0,
+    "order": 5,
+    "active": true
+  },
+  {
+    "id": "x-total-posts",
+    "name": "X 累計ポスト数",
+    "description": "X（Twitter）の累計投稿数",
+    "unit": "件",
+    "type": "count",
+    "color": "#657786",
+    "min": 0,
+    "order": 6,
+    "active": true
+  },
+  {
+    "id": "x-sent-dms",
+    "name": "X 送信DM数",
+    "description": "X（Twitter）で送信したDMの数",
+    "unit": "件",
+    "type": "count",
+    "color": "#AAB8C2",
+    "min": 0,
+    "order": 7,
+    "active": true
+  },
+  {
+    "id": "illusupi-users",
+    "name": "illusupi ユーザー数",
+    "description": "illusupi の登録ユーザー数",
+    "unit": "人",
+    "type": "count",
+    "color": "#F59E0B",
+    "min": 0,
+    "order": 8,
+    "active": true
+  },
+  {
+    "id": "illusupi-posts",
+    "name": "illusupi 関連投稿数",
+    "description": "illusupi に関する投稿・言及の数",
+    "unit": "件",
+    "type": "count",
+    "color": "#8B5CF6",
+    "min": 0,
+    "order": 9,
+    "active": true
   }
 ]
