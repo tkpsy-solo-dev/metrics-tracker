@@ -1,0 +1,66 @@
+{
+  "version": "1.0",
+  "exportedAt": "2025-11-13T13:00:00.000Z",
+  "metrics": [
+    {
+      "id": "test-metric-1",
+      "name": "Test Metric 1",
+      "description": "First test metric for import",
+      "unit": "count",
+      "type": "count",
+      "color": "#3b82f6",
+      "min": 0,
+      "max": 100,
+      "order": 100,
+      "active": true
+    },
+    {
+      "id": "test-metric-2",
+      "name": "Test Metric 2",
+      "description": "Second test metric for import",
+      "unit": "%",
+      "type": "percentage",
+      "color": "#10b981",
+      "min": 0,
+      "max": 100,
+      "order": 101,
+      "active": true
+    }
+  ],
+  "dataPoints": [
+    {
+      "id": "dp-1",
+      "metricId": "test-metric-1",
+      "date": "2025-11-01",
+      "value": 42,
+      "note": "Test data point 1",
+      "createdAt": "2025-11-13T13:00:00.000Z",
+      "updatedAt": "2025-11-13T13:00:00.000Z"
+    },
+    {
+      "id": "dp-2",
+      "metricId": "test-metric-1",
+      "date": "2025-11-02",
+      "value": 45,
+      "createdAt": "2025-11-13T13:00:00.000Z",
+      "updatedAt": "2025-11-13T13:00:00.000Z"
+    },
+    {
+      "id": "dp-3",
+      "metricId": "test-metric-2",
+      "date": "2025-11-01",
+      "value": 85,
+      "note": "Test percentage",
+      "createdAt": "2025-11-13T13:00:00.000Z",
+      "updatedAt": "2025-11-13T13:00:00.000Z"
+    },
+    {
+      "id": "dp-4",
+      "metricId": "test-metric-2",
+      "date": "2025-11-02",
+      "value": 90,
+      "createdAt": "2025-11-13T13:00:00.000Z",
+      "updatedAt": "2025-11-13T13:00:00.000Z"
+    }
+  ]
+}
