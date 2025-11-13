@@ -1,0 +1,36 @@
+[
+  {
+    "id": "weight",
+    "name": "体重",
+    "description": "毎日の体重記録",
+    "unit": "kg",
+    "type": "number",
+    "color": "#3b82f6",
+    "min": 50,
+    "max": 100,
+    "order": 1,
+    "active": true
+  },
+  {
+    "id": "steps",
+    "name": "歩数",
+    "description": "1日の歩数",
+    "unit": "歩",
+    "type": "count",
+    "color": "#10b981",
+    "order": 2,
+    "active": true
+  },
+  {
+    "id": "sleep-hours",
+    "name": "睡眠時間",
+    "description": "睡眠時間（時間）",
+    "unit": "時間",
+    "type": "number",
+    "color": "#8b5cf6",
+    "min": 0,
+    "max": 12,
+    "order": 3,
+    "active": true
+  }
+]
