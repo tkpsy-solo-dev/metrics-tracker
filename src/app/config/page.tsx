@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { v4 as uuidv4 } from 'uuid';
-import { getAllMetrics, addMetric, updateMetric, deleteMetric } from '@/lib/metrics';
+import { getAllMetrics, addMetric, updateMetric, deleteMetric } from '@/lib/api-client';
 import { Metric, MetricType } from '@/types/metric';
 import { exportToJSON, exportToCSV, downloadFile } from '@/lib/export';
 import { importFromJSON, importFromCSV, readFileAsText } from '@/lib/import';
@@ -65,11 +65,14 @@ export default function ConfigPage() {
         await updateMetric(editingId, data);
       } else {
         // 新規追加
+        const now = new Date().toISOString();
         const newMetric: Metric = {
           ...data,
           id: uuidv4(),
           order: metrics.length,
           active: true,
+          createdAt: now,
+          updatedAt: now,
         };
         await addMetric(newMetric);
       }

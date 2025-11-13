@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { getAllMetrics } from '@/lib/metrics';
-import { getAllDataPoints } from '@/lib/data';
+import { getAllMetrics } from '@/lib/api-client';
+import { getAllDataPoints } from '@/lib/api-client';
 import { Metric } from '@/types/metric';
 import { DataPoint } from '@/types/data';
 

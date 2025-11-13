@@ -4,10 +4,9 @@ import { useState, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { getActiveMetrics } from '../../lib/metrics';
-import { getDataPointsByDate, upsertDataPoints } from '../../lib/data';
-import { getToday } from '../../lib/utils';
-import { Metric } from '../../types/metric';
+import { getActiveMetrics, getDataPointsByDate, upsertDataPoints } from '@/lib/api-client';
+import { getToday } from '@/lib/utils';
+import { Metric } from '@/types/metric';
 
 /**
  * メトリクスから動的に Zod スキーマを生成
