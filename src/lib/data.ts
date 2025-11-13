@@ -126,6 +126,13 @@ export async function getRecentDataPoints(
 }
 
 /**
+ * すべてのデータポイントを取得
+ */
+export async function getAllDataPoints(): Promise<DataPoint[]> {
+  return await db.dataPoints.toArray();
+}
+
+/**
  * すべてのデータポイントを削除（テスト用）
  */
 export async function clearAllDataPoints(): Promise<void> {
