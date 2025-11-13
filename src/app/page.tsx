@@ -6,6 +6,7 @@ import { getAllMetrics } from '@/lib/metrics';
 import { getAllDataPoints } from '@/lib/data';
 import { Metric } from '@/types/metric';
 import { DataPoint } from '@/types/data';
+import { GraphModal } from '@/components/GraphModal';
 
 interface ChartDataPoint {
   date: string;
@@ -17,6 +18,7 @@ export default function DashboardPage() {
   const [metrics, setMetrics] = useState<Metric[]>([]);
   const [dataPoints, setDataPoints] = useState<DataPoint[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedMetric, setSelectedMetric] = useState<{ metric: Metric; data: ChartDataPoint[] } | null>(null);
 
   // データ読み込み
   useEffect(() => {
@@ -89,7 +91,11 @@ export default function DashboardPage() {
           const chartData = getChartData(metric.id);
 
           return (
-            <div key={metric.id} className="bg-white p-4 md:p-6 rounded-lg shadow">
+            <div
+              key={metric.id}
+              className="bg-white p-4 md:p-6 rounded-lg shadow cursor-pointer hover:shadow-lg transition-shadow"
+              onClick={() => setSelectedMetric({ metric, data: chartData })}
+            >
               <div className="mb-4">
                 <h2 className="text-lg font-semibold text-gray-800">
                   {metric.name}
@@ -150,6 +156,15 @@ export default function DashboardPage() {
           );
         })}
       </div>
+
+      {/* モーダル */}
+      {selectedMetric && (
+        <GraphModal
+          metric={selectedMetric.metric}
+          chartData={selectedMetric.data}
+          onClose={() => setSelectedMetric(null)}
+        />
+      )}
     </div>
   );
 }
