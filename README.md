@@ -4,15 +4,35 @@
 
 ## 概要
 
-設定ベースでメトリクスを管理し、日次データを入力・可視化するシンプルなツールです。
+- メトリクス定義は JSON/YAML で設定ベース管理
+- 日次手動入力 UI
+- タイムシリーズデータを分析可能な形式で保存
+- 複数メトリクスを折れ線グラフ表示
+- クリックで全画面表示
 
-## 実装予定
+## 技術スタック
 
-- Phase 1: 基本セットアップと型定義
-- Phase 2: データ管理
-- Phase 3: データ入力 UI
-- Phase 4: ダッシュボード
-- Phase 5: 全画面グラフ
-- Phase 6: メトリクス設定
-- Phase 7: エクスポート機能
-- Phase 8: 仕上げ
+- Next.js 14 (App Router)
+- TypeScript
+- Tailwind CSS
+- Recharts
+- Dexie.js (IndexedDB)
+- React Hook Form + Zod
+
+## セットアップ
+
+```bash
+pnpm install
+pnpm dev
+```
+
+## 実装フェーズ
+
+- [x] Phase 1: 基本セットアップと型定義
+- [ ] Phase 2: データ管理
+- [ ] Phase 3: データ入力 UI
+- [ ] Phase 4: ダッシュボード
+- [ ] Phase 5: 全画面グラフ
+- [ ] Phase 6: メトリクス設定
+- [ ] Phase 7: エクスポート機能
+- [ ] Phase 8: 仕上げ
